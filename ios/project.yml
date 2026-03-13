@@ -1,0 +1,51 @@
+name: NFCWallet
+options:
+  bundleIdPrefix: com.nfcwallet
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+packages:
+  web3swift:
+    url: https://github.com/argentlabs/web3.swift
+    from: "1.6.0"
+  secp256k1:
+    url: https://github.com/GigaBitcoin/secp256k1.swift.git
+    exactVersion: "0.14.0"
+
+targets:
+  NFCWallet:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: Sources/NFCWallet
+        excludes:
+          - Resources/Info.plist
+    resources:
+      - path: Sources/NFCWallet/Resources/bip39_english.txt
+    info:
+      path: Sources/NFCWallet/Resources/Info.plist
+      properties:
+        UILaunchScreen:
+          UIColorName: ""
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        NFCReaderUsageDescription: "NFC Wallet uses NFC to read and write your encrypted wallet key half stored on your NFC card."
+        com.apple.developer.nfc.readersession.formats:
+          - NDEF
+          - TAG
+    entitlements:
+      path: NFCWallet.entitlements
+      properties:
+        com.apple.developer.nfc.readersession.formats:
+          - NDEF
+          - TAG
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nfcwallet.app
+        SWIFT_VERSION: "5.9"
+        DEVELOPMENT_TEAM: ""   # Set your Apple Team ID here
+    dependencies:
+      - package: web3swift
+        product: web3.swift

@@ -1,0 +1,15 @@
+# Backend
+backend/node_modules/
+backend/.env
+
+# iOS build artifacts
+ios/.build/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+ios/DerivedData/
+
+# macOS
+.DS_Store
+
+# Xcode
+*.xcuserstate

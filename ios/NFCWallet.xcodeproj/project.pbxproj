@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		004C1E9145F9276C00D9A759 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A481A0DEC0FA0F285B75F /* OnboardingView.swift */; };
+		04CE281C5F26BC7CABCD3FFC /* NFCWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851A3DC1DEA5E1D3BD5E5F6 /* NFCWalletApp.swift */; };
+		060DBDCD7ED6A9402BC55DB4 /* web3.swift in Frameworks */ = {isa = PBXBuildFile; productRef = AB097C97AD9A44F5AC8AD1E2 /* web3.swift */; };
+		1E2972AC3863044C42DCE701 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7844F716201E878F8A66419 /* HomeView.swift */; };
+		24227A70C6603ED8958B7AE8 /* TransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C03A892F5837D6DFA9862 /* TransactionService.swift */; };
+		2D7598C1B88EA9FEE7375FAD /* NFCService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B513FE24C17E37CE3A9C0 /* NFCService.swift */; };
+		342C5AB3444091447F4657C3 /* ReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C224C70ED398891BDE47FFA8 /* ReceiveView.swift */; };
+		3FEDD5311B427A6C24EB188F /* CreateWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515B646FE26CBD5A43FD7561 /* CreateWalletView.swift */; };
+		658709A27A8263A7004BAE2D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530456434641EEF646EEA8F /* NetworkService.swift */; };
+		AA5CEF3E00026F90EAE37376 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CFB18E2D721686677A15 /* ContentView.swift */; };
+		BD1D5C7594454EE8225287F8 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E70B75B42AA19767D168AEC /* WalletService.swift */; };
+		D732F833060CAECBB48E3DF7 /* SendPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CA36273BE49A1AB897BECF /* SendPaymentView.swift */; };
+		E2E311727E0DE07191D15C88 /* WalletModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B7559291BDCDCCBCDE568 /* WalletModels.swift */; };
+		F1B22035CE1DEDC287C6D887 /* bip39_english.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD8234F6727C728567F56FE3 /* bip39_english.txt */; };
+		FA909D99814A490EAA084247 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E48E82D47406971BA587F /* CryptoService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0530456434641EEF646EEA8F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		069B7559291BDCDCCBCDE568 /* WalletModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModels.swift; sourceTree = "<group>"; };
+		2E70B75B42AA19767D168AEC /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
+		4D8A481A0DEC0FA0F285B75F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		515B646FE26CBD5A43FD7561 /* CreateWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletView.swift; sourceTree = "<group>"; };
+		825E48E82D47406971BA587F /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
+		871F53C4C59B5C252ED1324B /* NFCWallet.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NFCWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		961B513FE24C17E37CE3A9C0 /* NFCService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCService.swift; sourceTree = "<group>"; };
+		B2D5CFB18E2D721686677A15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C224C70ED398891BDE47FFA8 /* ReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveView.swift; sourceTree = "<group>"; };
+		C7844F716201E878F8A66419 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C851A3DC1DEA5E1D3BD5E5F6 /* NFCWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCWalletApp.swift; sourceTree = "<group>"; };
+		D89C03A892F5837D6DFA9862 /* TransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionService.swift; sourceTree = "<group>"; };
+		DD8234F6727C728567F56FE3 /* bip39_english.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bip39_english.txt; sourceTree = "<group>"; };
+		F2CA36273BE49A1AB897BECF /* SendPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPaymentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B0CBE3FFB77871EBF016F855 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				060DBDCD7ED6A9402BC55DB4 /* web3.swift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		104698FD9ABAFAD5327AF1CA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				825E48E82D47406971BA587F /* CryptoService.swift */,
+				0530456434641EEF646EEA8F /* NetworkService.swift */,
+				961B513FE24C17E37CE3A9C0 /* NFCService.swift */,
+				D89C03A892F5837D6DFA9862 /* TransactionService.swift */,
+				2E70B75B42AA19767D168AEC /* WalletService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3196CE877CE16BE0883BEE7D /* NFCWallet */ = {
+			isa = PBXGroup;
+			children = (
+				C851A3DC1DEA5E1D3BD5E5F6 /* NFCWalletApp.swift */,
+				C4FB6606156A8CAE551849F8 /* Models */,
+				9AD21FFC147BD2412832892F /* Resources */,
+				104698FD9ABAFAD5327AF1CA /* Services */,
+				AC61374812B866300E1DE04B /* Views */,
+			);
+			path = NFCWallet;
+			sourceTree = "<group>";
+		};
+		43ADBFDF05D657F1D14A0020 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				871F53C4C59B5C252ED1324B /* NFCWallet.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A0C89C6428BFEC20D3B07FB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3196CE877CE16BE0883BEE7D /* NFCWallet */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		9AD21FFC147BD2412832892F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DD8234F6727C728567F56FE3 /* bip39_english.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AC61374812B866300E1DE04B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B2D5CFB18E2D721686677A15 /* ContentView.swift */,
+				515B646FE26CBD5A43FD7561 /* CreateWalletView.swift */,
+				C7844F716201E878F8A66419 /* HomeView.swift */,
+				4D8A481A0DEC0FA0F285B75F /* OnboardingView.swift */,
+				C224C70ED398891BDE47FFA8 /* ReceiveView.swift */,
+				F2CA36273BE49A1AB897BECF /* SendPaymentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C4FB6606156A8CAE551849F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				069B7559291BDCDCCBCDE568 /* WalletModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FEB693156D2886FF7AA01CA6 = {
+			isa = PBXGroup;
+			children = (
+				7A0C89C6428BFEC20D3B07FB /* Sources */,
+				43ADBFDF05D657F1D14A0020 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2D2677474EAC21BDA8E2BA9C /* NFCWallet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8210C776FE2457AFC6DB5CAF /* Build configuration list for PBXNativeTarget "NFCWallet" */;
+			buildPhases = (
+				873364EC1C285530B1A75589 /* Sources */,
+				A86A48CB5A247547D6190428 /* Resources */,
+				B0CBE3FFB77871EBF016F855 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NFCWallet;
+			packageProductDependencies = (
+				AB097C97AD9A44F5AC8AD1E2 /* web3.swift */,
+			);
+			productName = NFCWallet;
+			productReference = 871F53C4C59B5C252ED1324B /* NFCWallet.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		92EC6B7C5FBDF91D35928DC6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2D2677474EAC21BDA8E2BA9C = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = 4E8449B9422FC8FA62AC6C1D /* Build configuration list for PBXProject "NFCWallet" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = FEB693156D2886FF7AA01CA6;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				951CEC9E59D58951E3D2711E /* XCRemoteSwiftPackageReference "secp256k1.swift" */,
+				873B292A34977CCFE7F47F95 /* XCRemoteSwiftPackageReference "web3.swift" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2D2677474EAC21BDA8E2BA9C /* NFCWallet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A86A48CB5A247547D6190428 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B22035CE1DEDC287C6D887 /* bip39_english.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		873364EC1C285530B1A75589 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5CEF3E00026F90EAE37376 /* ContentView.swift in Sources */,
+				3FEDD5311B427A6C24EB188F /* CreateWalletView.swift in Sources */,
+				FA909D99814A490EAA084247 /* CryptoService.swift in Sources */,
+				1E2972AC3863044C42DCE701 /* HomeView.swift in Sources */,
+				2D7598C1B88EA9FEE7375FAD /* NFCService.swift in Sources */,
+				04CE281C5F26BC7CABCD3FFC /* NFCWalletApp.swift in Sources */,
+				658709A27A8263A7004BAE2D /* NetworkService.swift in Sources */,
+				004C1E9145F9276C00D9A759 /* OnboardingView.swift in Sources */,
+				342C5AB3444091447F4657C3 /* ReceiveView.swift in Sources */,
+				D732F833060CAECBB48E3DF7 /* SendPaymentView.swift in Sources */,
+				24227A70C6603ED8958B7AE8 /* TransactionService.swift in Sources */,
+				E2E311727E0DE07191D15C88 /* WalletModels.swift in Sources */,
+				BD1D5C7594454EE8225287F8 /* WalletService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		73CF1B7DFD91618CC755A8EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NFCWallet.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Sources/NFCWallet/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nfcwallet.app;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7B3E9BD7FF79A9757253F77F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NFCWallet.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Sources/NFCWallet/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nfcwallet.app;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9376426E1B017BFF42BAA223 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C56D9818AD434106A9BE826F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4E8449B9422FC8FA62AC6C1D /* Build configuration list for PBXProject "NFCWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9376426E1B017BFF42BAA223 /* Debug */,
+				C56D9818AD434106A9BE826F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8210C776FE2457AFC6DB5CAF /* Build configuration list for PBXNativeTarget "NFCWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73CF1B7DFD91618CC755A8EE /* Debug */,
+				7B3E9BD7FF79A9757253F77F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		873B292A34977CCFE7F47F95 /* XCRemoteSwiftPackageReference "web3.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/argentlabs/web3.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.0;
+			};
+		};
+		951CEC9E59D58951E3D2711E /* XCRemoteSwiftPackageReference "secp256k1.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GigaBitcoin/secp256k1.swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.14.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AB097C97AD9A44F5AC8AD1E2 /* web3.swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 873B292A34977CCFE7F47F95 /* XCRemoteSwiftPackageReference "web3.swift" */;
+			productName = web3.swift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 92EC6B7C5FBDF91D35928DC6 /* Project object */;
+}

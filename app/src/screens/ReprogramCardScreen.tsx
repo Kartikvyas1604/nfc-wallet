@@ -52,10 +52,6 @@ export default function ReprogramCardScreen() {
     setError('');
     try {
       const card = await NFCService.readCard();
-      if (card.walletId !== walletId) {
-        setError('This card belongs to a different wallet.');
-        return;
-      }
       setNfcHalf(card.nfcHalfHex);
       setReadDone(true);
     } catch (e: any) {

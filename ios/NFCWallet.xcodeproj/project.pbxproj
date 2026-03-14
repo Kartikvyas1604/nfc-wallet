@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,7 +31,7 @@
 		4D8A481A0DEC0FA0F285B75F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		515B646FE26CBD5A43FD7561 /* CreateWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletView.swift; sourceTree = "<group>"; };
 		825E48E82D47406971BA587F /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
-		871F53C4C59B5C252ED1324B /* NFCWallet.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NFCWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		871F53C4C59B5C252ED1324B /* NFCWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NFCWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		961B513FE24C17E37CE3A9C0 /* NFCService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCService.swift; sourceTree = "<group>"; };
 		B2D5CFB18E2D721686677A15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C224C70ED398891BDE47FFA8 /* ReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveView.swift; sourceTree = "<group>"; };
@@ -162,11 +162,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-					2D2677474EAC21BDA8E2BA9C = {
-						DevelopmentTeam = "";
-					};
-				};
 			};
 			buildConfigurationList = 4E8449B9422FC8FA62AC6C1D /* Build configuration list for PBXProject "NFCWallet" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -180,9 +175,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				951CEC9E59D58951E3D2711E /* XCRemoteSwiftPackageReference "secp256k1.swift" */,
-				873B292A34977CCFE7F47F95 /* XCRemoteSwiftPackageReference "web3.swift" */,
+				873B292A34977CCFE7F47F95 /* XCRemoteSwiftPackageReference "web3" */,
 			);
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -232,7 +226,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = NFCWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 98D56LBRVZ;
 				INFOPLIST_FILE = Sources/NFCWallet/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -252,7 +246,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = NFCWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 98D56LBRVZ;
 				INFOPLIST_FILE = Sources/NFCWallet/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -409,7 +403,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		873B292A34977CCFE7F47F95 /* XCRemoteSwiftPackageReference "web3.swift" */ = {
+		873B292A34977CCFE7F47F95 /* XCRemoteSwiftPackageReference "web3" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/argentlabs/web3.swift";
 			requirement = {
@@ -430,7 +424,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		AB097C97AD9A44F5AC8AD1E2 /* web3.swift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 873B292A34977CCFE7F47F95 /* XCRemoteSwiftPackageReference "web3.swift" */;
+			package = 873B292A34977CCFE7F47F95 /* XCRemoteSwiftPackageReference "web3" */;
 			productName = web3.swift;
 		};
 /* End XCSwiftPackageProductDependency section */

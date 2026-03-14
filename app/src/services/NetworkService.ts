@@ -60,4 +60,32 @@ export const NetworkService = {
     request<{ wallet: { walletId: string; ethAddress: string; solAddress: string; createdAt: string } | null }>(
       '/wallet/me'
     ),
+
+  // ── BitGo ──────────────────────────────────────────────────────────────────
+
+  /** Provision a BitGo wallet. passphrase = user's encryption password. */
+  createBitgoWallet: (passphrase: string) =>
+    request<{ bitgoWalletId: string }>('/bitgo/wallet', {
+      method: 'POST',
+      body: JSON.stringify({ passphrase }),
+    }),
+
+  /** Generate a fresh receiving address (new address per payment = privacy). */
+  getBitgoFreshAddress: () =>
+    request<{ address: string }>('/bitgo/address'),
+
+  /** Get BitGo wallet balance in wei. */
+  getBitgoBalance: () =>
+    request<{ balanceWei: string; confirmedWei: string }>('/bitgo/balance'),
+
+  /**
+   * POS send: transfer ETH from the payer's BitGo wallet to receiver's address.
+   * payerWalletId comes from the NFC card scan.
+   * passphrase = payer's encryption password (verified client-side first via XOR reconstruct).
+   */
+  bitgoSend: (payerWalletId: string, toAddress: string, amountEth: string, passphrase: string) =>
+    request<{ txHash: string }>('/bitgo/send', {
+      method: 'POST',
+      body: JSON.stringify({ payerWalletId, toAddress, amountEth, passphrase }),
+    }),
 };

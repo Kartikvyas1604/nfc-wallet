@@ -96,13 +96,23 @@ export default function SendScreen() {
       // Fetch payer's server half using walletId from their NFC card
       const payerServer = await NetworkService.fetchWallet(payerWalletId);
 
-      // Reconstruct payer's private keys
+      // Reconstruct payer's private keys — verifies password + nfcHalf are correct
       const { ethPrivKey, solPrivKey } = await reconstructKeys(payerNfcHalf, payerServer, password);
 
-      // Send from payer → my address
-      const hash = chain === 'ETH'
-        ? await sendEth(ethPrivKey, myAddress, amount.trim())
-        : await sendSol(solPrivKey, myAddress, amount.trim());
+      let hash: string;
+
+      if (chain === 'ETH') {
+        // Try BitGo first — co-signed transaction, NFC card enforces authorisation
+        try {
+          const result = await NetworkService.bitgoSend(payerWalletId, myAddress, amount.trim(), password);
+          hash = result.txHash;
+        } catch {
+          // BitGo wallet not provisioned — fall back to direct send
+          hash = await sendEth(ethPrivKey, myAddress, amount.trim());
+        }
+      } else {
+        hash = await sendSol(solPrivKey, myAddress, amount.trim());
+      }
 
       setTxHash(hash);
       setStep('done');

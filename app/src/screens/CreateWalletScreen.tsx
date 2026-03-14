@@ -74,6 +74,12 @@ export default function CreateWalletScreen() {
       // Clear private keys from state now that card is written
       setEthPrivKey('');
       setSolPrivKey('');
+      // Provision BitGo wallet — passphrase = encryption password (links NFC auth to BitGo signing)
+      try {
+        await NetworkService.createBitgoWallet(password);
+      } catch {
+        // BitGo provisioning is best-effort at setup; won't block wallet creation
+      }
       setStep('done');
     } catch (e: any) {
       setError(e.message);

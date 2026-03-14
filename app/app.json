@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "NFC Wallet",
+    "slug": "nfc-wallet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0F0C29"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.nfcwallet.app",
+      "infoPlist": {
+        "NFCReaderUsageDescription": "NFC Wallet uses NFC to read and write your encrypted wallet key half stored on your NFC card."
+      },
+      "entitlements": {
+        "com.apple.developer.nfc.readersession.formats": ["NDEF", "TAG"]
+      }
+    },
+    "android": {
+      "package": "com.nfcwallet.app",
+      "permissions": ["android.permission.NFC"]
+    },
+    "plugins": [
+      "react-native-nfc-manager"
+    ]
+  }
+}

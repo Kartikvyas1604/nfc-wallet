@@ -4,15 +4,25 @@ import {
   ActivityIndicator, ScrollView, RefreshControl,
 } from 'react-native';
 import { useApp } from '../store/AppContext';
-import { ethers } from 'ethers';
 
-const ETH_RPC = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161'; // public key, read-only
-const SOL_RPC = 'https://api.mainnet-beta.solana.com';
+// Testnets — no API key needed
+const ETH_RPC = 'https://rpc2.sepolia.org';
+const SOL_RPC = 'https://api.devnet.solana.com';
 
 async function fetchEthBalance(address: string): Promise<string> {
-  const provider = new ethers.JsonRpcProvider(ETH_RPC);
-  const wei = await provider.getBalance(address);
-  return ethers.formatEther(wei);
+  const res = await fetch(ETH_RPC, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      jsonrpc: '2.0', id: 1,
+      method: 'eth_getBalance',
+      params: [address, 'latest'],
+    }),
+  });
+  const json = await res.json();
+  if (json.error) throw new Error(json.error.message);
+  const wei = BigInt(json.result);
+  return (Number(wei) / 1e18).toFixed(6);
 }
 
 async function fetchSolBalance(address: string): Promise<string> {
@@ -38,6 +48,7 @@ export default function BalanceScreen() {
   const [error, setError] = useState('');
 
   const refresh = useCallback(async () => {
+    if (!ethAddress || !solAddress) return;
     setLoading(true);
     setError('');
     try {
@@ -63,15 +74,15 @@ export default function BalanceScreen() {
       <Text style={s.title}>My Wallet</Text>
 
       <View style={s.card}>
-        <Text style={s.chainLabel}>Ethereum</Text>
+        <Text style={s.chainLabel}>Ethereum (Sepolia)</Text>
         <Text style={s.addr} numberOfLines={1}>{ethAddress || '—'}</Text>
         <Text style={s.balance}>
-          {ethBal !== null ? `${parseFloat(ethBal).toFixed(6)} ETH` : '—'}
+          {ethBal !== null ? `${ethBal} ETH` : '—'}
         </Text>
       </View>
 
       <View style={s.card}>
-        <Text style={s.chainLabel}>Solana</Text>
+        <Text style={s.chainLabel}>Solana (Devnet)</Text>
         <Text style={s.addr} numberOfLines={1}>{solAddress || '—'}</Text>
         <Text style={s.balance}>
           {solBal !== null ? `${solBal} SOL` : '—'}
@@ -82,7 +93,7 @@ export default function BalanceScreen() {
 
       <TouchableOpacity style={s.btn} onPress={refresh} disabled={loading}>
         {loading
-          ? <ActivityIndicator color="#000" />
+          ? <ActivityIndicator color="#fff" />
           : <Text style={s.btnText}>Refresh Balances</Text>
         }
       </TouchableOpacity>

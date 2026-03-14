@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NetworkService } from '../services/NetworkService';
 
 interface AppState {
   isLoggedIn: boolean;
@@ -26,30 +27,52 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     solAddress: '',
   });
 
+  // Restore session on app start
   useEffect(() => {
     (async () => {
       const token = await AsyncStorage.getItem('authToken');
-      const eth = await AsyncStorage.getItem('ethAddress') ?? '';
-      const sol = await AsyncStorage.getItem('solAddress') ?? '';
-      if (token) {
-        setState({ isLoggedIn: true, hasWallet: !!eth, authToken: token, ethAddress: eth, solAddress: sol });
+      if (!token) return;
+      // Token exists — check server for wallet
+      try {
+        const { wallet } = await NetworkService.fetchMyWallet();
+        setState({
+          isLoggedIn: true,
+          hasWallet: !!wallet,
+          authToken: token,
+          ethAddress: wallet?.ethAddress ?? '',
+          solAddress: wallet?.solAddress ?? '',
+        });
+      } catch {
+        // Token expired or network error — still mark as logged in, no wallet
+        setState({ isLoggedIn: true, hasWallet: false, authToken: token, ethAddress: '', solAddress: '' });
       }
     })();
   }, []);
 
   const login = async (token: string) => {
+    // Save token first so NetworkService can pick it up
     await AsyncStorage.setItem('authToken', token);
-    setState(s => ({ ...s, isLoggedIn: true, authToken: token }));
+    // Check if this account already has a wallet
+    try {
+      const { wallet } = await NetworkService.fetchMyWallet();
+      setState({
+        isLoggedIn: true,
+        hasWallet: !!wallet,
+        authToken: token,
+        ethAddress: wallet?.ethAddress ?? '',
+        solAddress: wallet?.solAddress ?? '',
+      });
+    } catch {
+      setState(s => ({ ...s, isLoggedIn: true, authToken: token }));
+    }
   };
 
   const logout = async () => {
-    await AsyncStorage.multiRemove(['authToken', 'ethAddress', 'solAddress']);
+    await AsyncStorage.removeItem('authToken');
     setState({ isLoggedIn: false, hasWallet: false, authToken: null, ethAddress: '', solAddress: '' });
   };
 
   const saveWalletAddresses = async (eth: string, sol: string) => {
-    await AsyncStorage.setItem('ethAddress', eth);
-    await AsyncStorage.setItem('solAddress', sol);
     setState(s => ({ ...s, hasWallet: true, ethAddress: eth, solAddress: sol }));
   };
 

@@ -15,6 +15,7 @@ import { NetworkService } from '../services/NetworkService';
 import { reconstructKeys } from '../services/WalletService';
 import { hexToBytes } from '../services/CryptoService';
 import { ENSService, ENSPaymentProfile } from '../services/ENSService';
+import { ProofService, CapacityProof } from '../services/ProofService';
 import { useApp } from '../store/AppContext';
 
 type Step = 'select' | 'amount' | 'nfc' | 'password' | 'sending' | 'done';
@@ -66,6 +67,7 @@ export default function SendScreen() {
   const [txHash, setTxHash]     = useState('');
   const [loading, setLoading]   = useState(false);
   const [error, setError]       = useState('');
+  const [zkProof, setZkProof]   = useState<CapacityProof | null>(null);
 
   // ENS profile of the receiver (logged-in user)
   const [ensProfile, setEnsProfile] = useState<ENSPaymentProfile | null>(null);
@@ -118,6 +120,13 @@ export default function SendScreen() {
 
       // Reconstruct payer's private keys — verifies password + nfcHalf are correct
       const { ethPrivKey, solPrivKey } = await reconstructKeys(payerNfcHalf, payerServer, password);
+
+      // Selective disclosure proof — proves payer controls wallet + authorises this
+      // specific payment without revealing balance, history, or identity
+      if (chain === 'ETH') {
+        const proof = await ProofService.generate(ethPrivKey, amount.trim(), chain, myAddress);
+        setZkProof(proof);
+      }
 
       let hash: string;
       const amountNum = parseFloat(amount.trim());
@@ -182,7 +191,7 @@ export default function SendScreen() {
     setStep('select');
     setAmount(''); setPassword('');
     setPayerWalletId(''); setPayerNfcHalf('');
-    setTxHash(''); setError('');
+    setTxHash(''); setError(''); setZkProof(null);
   };
 
   // ── Select chain ─────────────────────────────────────────────────────────
@@ -345,6 +354,21 @@ export default function SendScreen() {
         <Text style={{ fontSize: 80 }}>✅</Text>
         <Text style={s.title}>Payment Received!</Text>
         <Text style={s.sub}>{amount} {chain} is on its way to your wallet.</Text>
+
+        {/* Selective disclosure proof badge */}
+        {zkProof && ProofService.verify(zkProof) && (
+          <View style={s.zkBadge}>
+            <Text style={s.zkBadgeIcon}>🛡️</Text>
+            <View style={{ flex: 1 }}>
+              <Text style={s.zkBadgeTitle}>Selective Disclosure Proof</Text>
+              <Text style={s.zkBadgeSub}>
+                Payer's capacity verified without revealing balance or identity.
+              </Text>
+              <Text style={s.zkBadgeSig}>{ProofService.fingerprint(zkProof)}</Text>
+            </View>
+          </View>
+        )}
+
         <View style={s.hashBox}>
           <Text style={s.hashLabel}>Transaction Hash</Text>
           <Text style={s.hash} selectable>{txHash}</Text>
@@ -421,6 +445,18 @@ const s = StyleSheet.create({
   },
   hashLabel: { color: '#A855F7', fontSize: 11, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 },
   hash:      { color: '#fff', fontSize: 11, fontFamily: 'monospace', lineHeight: 18 },
+
+  // ZK selective disclosure badge
+  zkBadge: {
+    flexDirection: 'row', alignItems: 'flex-start', gap: 10,
+    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 14,
+    padding: 14, width: '100%',
+    borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)',
+  },
+  zkBadgeIcon:  { fontSize: 20, marginTop: 1 },
+  zkBadgeTitle: { color: '#22c55e', fontWeight: '700', fontSize: 13 },
+  zkBadgeSub:   { color: 'rgba(255,255,255,0.5)', fontSize: 12, lineHeight: 18, marginTop: 2 },
+  zkBadgeSig:   { color: 'rgba(34,197,94,0.6)', fontSize: 10, fontFamily: 'monospace', marginTop: 4 },
 
   // ENS profile card
   ensLoadingRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },

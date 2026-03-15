@@ -26,8 +26,8 @@ import Svg, {
 } from 'react-native-svg';
 import { Feather } from '@expo/vector-icons';
 
-import { Colors, Radius, Spacing } from '../theme/colors';
-import { FontFamily, FontSize } from '../theme/typography';
+import { Colors, Radius } from '../../theme/colors';
+import { FontFamily, FontSize } from '../../theme/typography';
 import OrangeButton from '../../components/ui/OrangeButton';
 
 // ── NFCCard SVG illustration ──────────────────────────────────────────────────

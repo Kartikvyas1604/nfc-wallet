@@ -17,13 +17,13 @@ import {
 import { Feather } from '@expo/vector-icons';
 import Svg, { Circle, Path, Polyline } from 'react-native-svg';
 
-import { Colors, Radius, Shadows, Spacing } from '../../theme/colors';
+import { Colors, Radius } from '../../theme/colors';
 import { FontFamily, FontSize } from '../../theme/typography';
-import GradientCard from '../../../components/ui/GradientCard';
-import OrangeButton from '../../../components/ui/OrangeButton';
-import NFCRingAnimation from '../../../components/ui/NFCRingAnimation';
-import PinDot from '../../../components/ui/PinDot';
-import StepIndicator from '../../../components/ui/StepIndicator';
+import GradientCard from '../../components/ui/GradientCard';
+import OrangeButton from '../../components/ui/OrangeButton';
+import NFCRingAnimation from '../../components/ui/NFCRingAnimation';
+import PinDot from '../../components/ui/PinDot';
+import StepIndicator from '../../components/ui/StepIndicator';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 type Step = 0 | 1 | 2 | 3 | 4;  // Generate | Seed Phrase | Password | NFC Write | Done

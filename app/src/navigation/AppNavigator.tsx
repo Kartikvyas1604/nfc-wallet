@@ -1,18 +1,17 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text } from 'react-native';
 import { useApp } from '../store/AppContext';
 
-import OnboardingScreen     from '../screens/OnboardingScreen';
-import CreateWalletScreen   from '../screens/CreateWalletScreen';
+import WelcomeScreen        from '../screens/onboarding/WelcomeScreen';
+import SetupWalletScreen    from '../screens/onboarding/SetupWalletScreen';
 import VerifyCardScreen     from '../screens/VerifyCardScreen';
-import BalanceScreen        from '../screens/BalanceScreen';
-import ReceiveScreen        from '../screens/ReceiveScreen';
-import SendScreen           from '../screens/SendScreen';
-import ReprogramCardScreen  from '../screens/ReprogramCardScreen';
-import ENSProfileScreen     from '../screens/ENSProfileScreen';
-import HistoryScreen        from '../screens/HistoryScreen';
+import WalletScreen         from '../screens/WalletScreen';
+import POSScreen            from '../screens/POSScreen';
+import PayScreen            from '../screens/PayScreen';
+import ActivityScreen       from '../screens/ActivityScreen';
+import SettingsScreen       from '../screens/SettingsScreen';
+import CustomTabBar         from '../components/ui/CustomTabBar';
 
 const Stack = createNativeStackNavigator();
 const Tab   = createBottomTabNavigator();
@@ -22,59 +21,39 @@ function HomeTabs() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: '#0F0C29', borderTopColor: '#302B63' },
-        tabBarActiveTintColor: '#A855F7',
-        tabBarInactiveTintColor: '#666',
+        tabBarShowLabel: false,
       }}
+      tabBar={(props) => <CustomTabBar {...props} />}
     >
-      <Tab.Screen
-        name="Balance"
-        component={BalanceScreen}
-        options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>💳</Text> }}
-      />
-      <Tab.Screen
-        name="Receive"
-        component={ReceiveScreen}
-        options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>⬇️</Text> }}
-      />
-      <Tab.Screen
-        name="Pay"
-        component={SendScreen}
-        options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>📲</Text> }}
-      />
-      <Tab.Screen
-        name="Card"
-        component={ReprogramCardScreen}
-        options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>📡</Text> }}
-      />
-      <Tab.Screen
-        name="ENS"
-        component={ENSProfileScreen}
-        options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>🔷</Text> }}
-      />
-      <Tab.Screen
-        name="History"
-        component={HistoryScreen}
-        options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>🧾</Text> }}
-      />
+      <Tab.Screen name="Wallet" component={WalletScreen} />
+      <Tab.Screen name="Receive" component={POSScreen} />
+      <Tab.Screen name="Pay" component={PayScreen} />
+      <Tab.Screen name="Activity" component={ActivityScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
 }
 
 export default function AppNavigator() {
   const { isLoggedIn, hasWallet, isCardVerified } = useApp();
+  const initialRouteName = !isLoggedIn
+    ? 'Welcome'
+    : !hasWallet
+      ? 'SetupWallet'
+      : !isCardVerified
+        ? 'VerifyCard'
+        : 'Main';
 
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {!isLoggedIn ? (
-        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-      ) : !hasWallet ? (
-        <Stack.Screen name="CreateWallet" component={CreateWalletScreen} />
-      ) : !isCardVerified ? (
-        <Stack.Screen name="VerifyCard" component={VerifyCardScreen} />
-      ) : (
-        <Stack.Screen name="Home" component={HomeTabs} />
-      )}
+    <Stack.Navigator
+      key={initialRouteName}
+      initialRouteName={initialRouteName}
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
+      <Stack.Screen name="SetupWallet" component={SetupWalletScreen} />
+      <Stack.Screen name="VerifyCard" component={VerifyCardScreen} />
+      <Stack.Screen name="Main" component={HomeTabs} />
     </Stack.Navigator>
   );
 }

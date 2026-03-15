@@ -4,9 +4,9 @@ import {
   Text,
   View,
   Pressable,
-  Clipboard,
   Animated,
 } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
 import { Feather } from '@expo/vector-icons';
 import { Colors, Radius } from '../../theme/colors';
 import { FontFamily, FontSize } from '../../theme/typography';
@@ -36,7 +36,7 @@ export default function AddressChip({ address, chain, onCopy, style }: AddressCh
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
   const handleCopy = () => {
-    Clipboard.setString(address);
+    Clipboard.setStringAsync(address);
     setCopied(true);
     onCopy?.();
 

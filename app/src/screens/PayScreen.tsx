@@ -8,10 +8,10 @@ import {
   Pressable,
   Animated,
   TextInput,
-  Clipboard,
   Linking,
   StatusBar,
 } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
 import { Feather } from '@expo/vector-icons';
 import Svg, { Circle, Path, Polyline } from 'react-native-svg';
 
@@ -178,7 +178,7 @@ export default function PayScreen({ navigation }: any) {
 
   const fadeIn  = useRef(new Animated.Value(0)).current;
   const slideIn = useRef(new Animated.Value(20)).current;
-  const countdownRef = useRef<ReturnType<typeof setInterval>>();
+  const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const selectedChain = CHAINS[chainIdx];
   const addrValid     = isValidAddress(recipient);
@@ -195,7 +195,7 @@ export default function PayScreen({ navigation }: any) {
   // Step 2 countdown
   useEffect(() => {
     if (step !== 1) {
-      clearInterval(countdownRef.current);
+      if (countdownRef.current) clearInterval(countdownRef.current);
       setCountdown(30);
       return;
     }
@@ -203,7 +203,7 @@ export default function PayScreen({ navigation }: any) {
     countdownRef.current = setInterval(() => {
       setCountdown(c => {
         if (c <= 1) {
-          clearInterval(countdownRef.current);
+          if (countdownRef.current) clearInterval(countdownRef.current);
           setNfcState('error');
           setTimeout(() => handleCancel(), 1200);
           return 0;
@@ -211,11 +211,13 @@ export default function PayScreen({ navigation }: any) {
         return c - 1;
       });
     }, 1000);
-    return () => clearInterval(countdownRef.current);
+    return () => {
+      if (countdownRef.current) clearInterval(countdownRef.current);
+    };
   }, [step]);
 
   const handleNFCSuccess = () => {
-    clearInterval(countdownRef.current);
+    if (countdownRef.current) clearInterval(countdownRef.current);
     setNfcState('success');
     setTimeout(() => setStep(2), 900);
   };
@@ -385,7 +387,7 @@ export default function PayScreen({ navigation }: any) {
                         color={addrValid ? Colors.success : Colors.error}
                       />
                     )}
-                    <Pressable onPress={() => Clipboard.getString().then(setRecipient)}>
+                    <Pressable onPress={async () => setRecipient(await Clipboard.getStringAsync())}>
                       <Feather name="clipboard" size={16} color={Colors.brandOrange} />
                     </Pressable>
                     <Pressable>

@@ -22,11 +22,11 @@ import TransactionRow from '../components/ui/TransactionRow';
 const FILTERS = ['All', 'Sent', 'Received', 'Pending'] as const;
 
 const ITEMS = [
-  { id: '1', type: 'received', asset: 'ETH', amount: '+0.42', usdAmount: '$1,051.47', status: 'completed', counterparty: '0x9a3f...a0b1', timestamp: Date.now() - 15 * 60 * 1000 },
-  { id: '2', type: 'sent', asset: 'USDC', amount: '-85.00', usdAmount: '$85.00', status: 'completed', counterparty: 'vitalik.eth', timestamp: Date.now() - 3 * 60 * 60 * 1000 },
-  { id: '3', type: 'sent', asset: 'SOL', amount: '-1.80', usdAmount: '$93.60', status: 'pending', counterparty: 'C7v9...PQ2L', timestamp: Date.now() - 18 * 60 * 1000 },
-  { id: '4', type: 'received', asset: 'ETH', amount: '+0.12', usdAmount: '$300.42', status: 'completed', counterparty: '0xf4d2...9210', timestamp: Date.now() - 26 * 60 * 60 * 1000 },
-  { id: '5', type: 'received', asset: 'USDC', amount: '+210.00', usdAmount: '$210.00', status: 'completed', counterparty: 'merchant.pay', timestamp: Date.now() - 4 * 24 * 60 * 60 * 1000 },
+  { id: '1', type: 'received', asset: 'ETH', amount: '0.42', usdAmount: '$1,051.47', status: 'confirmed', counterparty: '0x9a3f...a0b1', timestamp: new Date(Date.now() - 15 * 60 * 1000).toISOString() },
+  { id: '2', type: 'sent', asset: 'USDC', amount: '85.00', usdAmount: '$85.00', status: 'confirmed', counterparty: 'vitalik.eth', timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString() },
+  { id: '3', type: 'sent', asset: 'SOL', amount: '1.80', usdAmount: '$93.60', status: 'pending', counterparty: 'C7v9...PQ2L', timestamp: new Date(Date.now() - 18 * 60 * 1000).toISOString() },
+  { id: '4', type: 'received', asset: 'ETH', amount: '0.12', usdAmount: '$300.42', status: 'confirmed', counterparty: '0xf4d2...9210', timestamp: new Date(Date.now() - 26 * 60 * 60 * 1000).toISOString() },
+  { id: '5', type: 'received', asset: 'USDC', amount: '210.00', usdAmount: '$210.00', status: 'confirmed', counterparty: 'merchant.pay', timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString() },
 ];
 
 export default function ActivityScreen() {
@@ -93,20 +93,27 @@ export default function ActivityScreen() {
           </View>
 
           <GradientCard noPadding style={styles.listCard}>
-            {filtered.map((item, index) => (
-              <View key={item.id}>
-                <TransactionRow
-                  type={item.type as any}
-                  asset={item.asset}
-                  amount={item.amount}
-                  usdAmount={item.usdAmount}
-                  status={item.status as any}
-                  counterparty={item.counterparty}
-                  timestamp={item.timestamp}
-                />
-                {index < filtered.length - 1 ? <View style={styles.divider} /> : null}
+            {filtered.length === 0 ? (
+              <View style={styles.emptyState}>
+                <Feather name="inbox" size={20} color={Colors.textFaint} />
+                <Text allowFontScaling={false} style={styles.emptyTitle}>No matching transactions</Text>
+                <Text allowFontScaling={false} style={styles.emptyBody}>Try a different filter or wait for activity to sync.</Text>
               </View>
-            ))}
+            ) : (
+              filtered.map((item, index) => (
+                <View key={item.id}>
+                  <TransactionRow
+                    direction={item.type as any}
+                    asset={item.asset}
+                    amount={item.amount}
+                    status={item.status as any}
+                    address={item.counterparty}
+                    timestamp={item.timestamp}
+                  />
+                  {index < filtered.length - 1 ? <View style={styles.divider} /> : null}
+                </View>
+              ))
+            )}
           </GradientCard>
         </ScrollView>
       </Animated.View>
@@ -211,4 +218,22 @@ const styles = StyleSheet.create({
   },
   listCard: { borderRadius: Radius.lg, overflow: 'hidden' },
   divider: { height: 1, backgroundColor: Colors.divider, marginLeft: 68 },
+  emptyState: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 28,
+    paddingHorizontal: 24,
+    gap: 8,
+  },
+  emptyTitle: {
+    fontFamily: FontFamily.interSemiBold,
+    fontSize: FontSize.base,
+    color: Colors.offWhite,
+  },
+  emptyBody: {
+    fontFamily: FontFamily.inter,
+    fontSize: FontSize.sm,
+    color: Colors.textMuted,
+    textAlign: 'center',
+  },
 });
